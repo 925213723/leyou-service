@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.leyou.service.dao.UserDao" >
+
+<select id="queryUserId" parameterType="java.lang.Long" resultType="com.leyou.service.pojo.User">
+    select
+    id as id,
+    user_Name as userName,
+    password as password,
+    name as name
+    from user
+    where id = #{id,jdbcType=BIGINT }
+</select>
+
+</mapper>
