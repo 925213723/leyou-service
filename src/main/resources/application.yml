@@ -9,4 +9,7 @@ spring:
 mybatis:
   type-aliases-package: com.leyou.service.pojo
   mapper-locations: classpath:mapper/**/*.xml
+logging:
+  level:
+    com.leyou.service.dao: debug
 
