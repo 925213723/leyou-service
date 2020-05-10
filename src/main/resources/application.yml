@@ -1,6 +1,8 @@
 server:
   port: 8081
 spring:
+  application:
+    name: service-provider
   datasource:
     url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
     username: root
@@ -12,4 +14,7 @@ mybatis:
 logging:
   level:
     com.leyou.service.dao: debug
-
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
