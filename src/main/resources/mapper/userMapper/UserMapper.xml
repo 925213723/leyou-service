@@ -12,4 +12,29 @@
     where id = #{id,jdbcType=BIGINT }
 </select>
 
+    <select id="findTeaSub" resultMap="teaSubMap">
+        select
+          tea_id as teaId,
+          tea_nm as teaNm
+        from tea
+    </select>
+
+    <select id="findSub" resultType="com.leyou.service.pojo.Sub">
+        select
+          tea_id as teaId,
+          sub_id as subId,
+          sub_nm as subNm
+        from sub
+    </select>
+
+    <resultMap id="teaSubMap" type="com.leyou.service.pojo.Tea">
+        <id column="teaId" property="teaId"/>
+        <result column="teaNm" property="teaNm"/>
+        <collection property="sub" ofType="com.leyou.service.pojo.Sub" select="com.leyou.service.dao.UserDao.findSub" column="teaId">
+            <id column="teaId" property="teaId"/>
+            <result column="subId" property="subId"/>
+            <result column="subNm" property="subNm"/>
+        </collection>
+    </resultMap>
+
 </mapper>

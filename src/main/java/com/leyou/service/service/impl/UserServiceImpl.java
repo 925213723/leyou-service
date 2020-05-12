@@ -1,6 +1,9 @@
 package com.leyou.service.service.impl;
 
 import com.leyou.service.dao.UserDao;
+import com.leyou.service.pojo.ParamMap;
+import com.leyou.service.pojo.Sub;
+import com.leyou.service.pojo.Tea;
 import com.leyou.service.pojo.User;
 import com.leyou.service.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +18,15 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
     @Override
-    public List<User> queryUserById(Long id) {
+    public  User queryUserById(Long id) {
 
-        List<User> users = userDao.queryUserId(id);
+        User users = userDao.queryUserId(id);
         return users;
+    }
+
+    @Override
+    public List<Tea> findTeaSub(ParamMap paramMap) {
+        List<Tea> teaSub = userDao.findTeaSub(paramMap);
+        return teaSub;
     }
 }
