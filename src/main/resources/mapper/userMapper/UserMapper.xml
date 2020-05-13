@@ -12,26 +12,24 @@
     where id = #{id,jdbcType=BIGINT }
 </select>
 
-    <select id="findTeaSub" resultMap="teaSubMap">
+    <select id="findTeaSub" parameterType="com.leyou.service.pojo.ParamMap" resultMap="teaSubMap">
         select
-          tea_id as teaId,
-          tea_nm as teaNm
-        from tea
-    </select>
-
-    <select id="findSub" resultType="com.leyou.service.pojo.Sub">
-        select
-          tea_id as teaId,
-          sub_id as subId,
-          sub_nm as subNm
-        from sub
+        t.tea_id as teaId,
+        t.tea_nm as teaNm,
+        s.sub_id as subId,
+        s.sub_nm as subNm
+        from
+        (select
+          tea_id,
+          tea_nm
+        from tea limit #{pageStart},#{pageSize}) t
+        left join sub s on t.tea_id = s.tea_id
     </select>
 
     <resultMap id="teaSubMap" type="com.leyou.service.pojo.Tea">
         <id column="teaId" property="teaId"/>
         <result column="teaNm" property="teaNm"/>
-        <collection property="sub" ofType="com.leyou.service.pojo.Sub" select="com.leyou.service.dao.UserDao.findSub" column="teaId">
-            <id column="teaId" property="teaId"/>
+        <collection property="sub" ofType="com.leyou.service.pojo.Sub" column="teaId">
             <result column="subId" property="subId"/>
             <result column="subNm" property="subNm"/>
         </collection>

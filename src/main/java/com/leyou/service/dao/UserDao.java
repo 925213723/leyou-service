@@ -16,6 +16,4 @@ public interface UserDao {
     User queryUserId(@Param("id") long id);
 
     List<Tea> findTeaSub(ParamMap paramMap);
-
-    List<Sub> findSub();
 }

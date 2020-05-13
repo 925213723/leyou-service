@@ -26,6 +26,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<Tea> findTeaSub(ParamMap paramMap) {
+        int pageStart = (paramMap.getPageNo()-1)* paramMap.getPageSize();
+        paramMap.setPageStart(pageStart);
         List<Tea> teaSub = userDao.findTeaSub(paramMap);
         return teaSub;
     }

@@ -6,6 +6,8 @@ public class ParamMap {
 
     private int pageNo;
 
+    private int pageStart;
+
     public int getPageSize() {
         return pageSize;
     }
@@ -20,5 +22,13 @@ public class ParamMap {
 
     public void setPageNo(int pageNo) {
         this.pageNo = pageNo;
+    }
+
+    public int getPageStart() {
+        return pageStart;
+    }
+
+    public void setPageStart(int pageStart) {
+        this.pageStart = pageStart;
     }
 }
