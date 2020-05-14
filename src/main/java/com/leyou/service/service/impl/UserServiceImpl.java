@@ -1,15 +1,13 @@
 package com.leyou.service.service.impl;
 
 import com.leyou.service.dao.UserDao;
-import com.leyou.service.pojo.ParamMap;
-import com.leyou.service.pojo.Sub;
-import com.leyou.service.pojo.Tea;
-import com.leyou.service.pojo.User;
+import com.leyou.service.pojo.*;
 import com.leyou.service.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -30,5 +28,17 @@ public class UserServiceImpl implements UserService {
         paramMap.setPageStart(pageStart);
         List<Tea> teaSub = userDao.findTeaSub(paramMap);
         return teaSub;
+    }
+
+    @Override
+    public List<Header> findHeader() {
+        List<Header> header = userDao.findHeader();
+        return header;
+    }
+
+    @Override
+    public List<DataScore> findData() {
+        List<DataScore> data = userDao.findData();
+        return data;
     }
 }

@@ -35,4 +35,18 @@
         </collection>
     </resultMap>
 
+    <select id="findHeader" resultType="com.leyou.service.pojo.Header">
+        select
+          heard_id as heardId,
+          heard_nm as heardNm
+        from hearders
+    </select>
+
+    <select id="findData" resultType="com.leyou.service.pojo.DataScore">
+        select
+         heard_id as heardId,
+         score as score
+         from score
+    </select>
+
 </mapper>
