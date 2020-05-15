@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping("/user")
@@ -31,18 +28,20 @@ public class UserController {
         return teaSub;
     }
 
-    @GetMapping("/downExcel")
-    public Map<String, Object> downExcel(HttpServletResponse response) throws Exception {
+    @PostMapping("/downExcel")
+    public void downExcel(@RequestBody List<Map<String,String>> dataScore, HttpServletResponse response) throws Exception {
         try {
-            List<String> heardList = new ArrayList<>();
+            /*List<String> heardList = new ArrayList<>();
             List<Header> header = userService.findHeader();
             for (Header m : header) {
                 String heardNm = (String) m.getHeardNm();
                 heardList.add(heardNm);
             }
-            List<DataScore> data = userService.findData();
-            Map<String, Object> map = DownExcel.exportRecordTask(response, heardList, data);
-            return map;
+            List<DataScore> data = userService.findData();*/
+            List<String> heardList = Arrays.asList("对象", "语文", "数学", "英语");
+
+
+            DownExcel.exportRecordTask(response, heardList,dataScore);
         } catch (Exception e) {
             e.printStackTrace();
             throw new Exception("错误");
