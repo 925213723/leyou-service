@@ -5,7 +5,9 @@ import com.leyou.service.service.UserService;
 import com.leyou.service.utils.DownExcel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.*;
 
@@ -29,7 +31,7 @@ public class UserController {
     }
 
     @PostMapping("/downExcel")
-    public void downExcel(@RequestBody List<Map<String,String>> dataScore, HttpServletResponse response) throws Exception {
+    public void downExcel(@RequestBody List<Map<String, String>> dataScore, HttpServletResponse response) throws Exception {
         try {
             /*List<String> heardList = new ArrayList<>();
             List<Header> header = userService.findHeader();
@@ -41,10 +43,20 @@ public class UserController {
             List<String> heardList = Arrays.asList("对象", "语文", "数学", "英语");
 
 
-            DownExcel.exportRecordTask(response, heardList,dataScore);
+            DownExcel.exportRecordTask(response, heardList, dataScore);
         } catch (Exception e) {
             e.printStackTrace();
             throw new Exception("错误");
         }
+    }
+
+    //导入excel
+    @RequestMapping(value = "/import", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> importExcel(@RequestParam(value = "file", required = false) MultipartFile file, HttpServletRequest request, HttpServletResponse response) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        String result = userService.readExcelFile(file);
+        map.put("message", result);
+        return map;
     }
 }

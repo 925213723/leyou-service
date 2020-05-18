@@ -71,7 +71,7 @@ public class DownExcel {
         int headSize = headers.size();
 
         //sheet.createFreezePane(headSize, 1);//设置冰冻列
-        sheet.createFreezePane( 1,1,1,1);//设置冰冻列
+        sheet.createFreezePane( 2,1,2,1);//设置冰冻列
         //导出excel名称，这里可以用UUID
         String fileName = "excel3.xls";
 

@@ -18,4 +18,6 @@ public interface UserDao {
    List<Header> findHeader();
 
    List<DataScore> findData();
+
+    int insertUser(@Param("name") String name, @Param("sex") String sex, @Param("age") int age);
 }
